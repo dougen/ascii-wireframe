@@ -1,0 +1,48 @@
+{
+  "skill_name": "ascii-wireframe",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我画一个 SaaS 定价页的线框图，我要直接贴进 README：顶部导航栏（logo、三个导航项、登录按钮），中间三档套餐卡 Starter / Team / Enterprise，每张卡有价格、三条功能点和按钮，还要有月付/年付切换。",
+      "expected_output": "一个 100 列以内的纯 ASCII 定价页线框：外框、顶部导航、月付/年付切换、三张等宽套餐卡，每卡含档位名、价格、三条功能点、CTA 按钮；中文需求下界面文案用英文，中文对应关系在代码块外给出。",
+      "files": [],
+      "expectations": [
+        "每个图代码块内只有 ASCII 字符（U+0020–U+007E），没有 Unicode 制表符、箭头、emoji 或全角标点",
+        "整张图通过 canvas.mjs 结构校验（verify ok）",
+        "图中每一行不超过 100 列",
+        "图中恰好有三张并排、等宽的套餐卡，分别标注 Starter / Team / Enterprise",
+        "每张套餐卡都含价格、三条功能点和一个 CTA 按钮",
+        "存在月付/年付切换控件（例如 [ Monthly ] [ Annual ] 或开关）",
+        "代码块之外给出与图对应的中文说明或图例"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "sketch the admin dashboard for our ops team: left sidebar with nav, a row of KPI cards, a traffic chart, and a 'New project' dialog open on top of it. Number the callouts 1-4 in the diagram margin and give me the legend below it for the design review.",
+      "expected_output": "100 列以内的纯 ASCII 运维后台线框：顶栏、侧边导航、KPI 卡片行、柱状图、覆盖在内容之上的对话框，四周边缘有 [1]–[4] 编号标注，代码块下方 1–4 逐条说明。",
+      "files": [],
+      "expectations": [
+        "每个图代码块内只有 ASCII 字符（U+0020–007E），没有 Unicode 制表符、箭头、emoji 或全角标点",
+        "整张图通过 canvas.mjs 结构校验（verify ok）",
+        "图中每一行不超过 100 列",
+        "含侧边导航、至少三张 KPI 卡、一个柱状图区域和一个对话框",
+        "对话框边框明显区别于普通框（= 或 H 型边框），且不与外层框或内容框贴边",
+        "图内出现 [1] [2] [3] [4] 四个编号标注，代码块下方逐条给出对应说明"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "把移动端结账流程画成三屏线框图：购物车 → 收货信息 → 支付成功。要能一眼看出顺序，每屏都要有返回和主按钮，整体宽度别太宽，我要塞进 PR 描述里。",
+      "expected_output": "纯 ASCII 三屏移动端结账流程：三个手机尺寸的框，按顺序排列（并排或纵向堆叠），每屏含标题/返回、主按钮，整体不超过 100 列，并说明流程顺序。",
+      "files": [],
+      "expectations": [
+        "每个图代码块内只有 ASCII 字符（U+0020–007E），没有 Unicode 制表符、箭头、emoji 或全角标点",
+        "整张图通过 canvas.mjs 结构校验（verify ok）",
+        "图中每一行不超过 100 列",
+        "恰好三个屏幕框，内容分别是购物车、收货信息、支付成功",
+        "每个屏幕都有返回入口（< 或 Back）和主按钮",
+        "三屏顺序可辨认：并排时宽度不超过 100 列，或纵向堆叠并带顺序标识"
+      ]
+    }
+  ]
+}
