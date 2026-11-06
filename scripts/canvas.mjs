@@ -102,6 +102,24 @@ export class Canvas {
   }
 
   /**
+   * Centre `str` in the run x..x+w-1, counted from the box's own left edge so
+   * the caller never hand-counts spaces. Surplus slack goes right.
+   */
+  center(x, y, w, str) {
+    const len = [...str].length;
+    if (len > w) {
+      this.errors.push(`centred text ${JSON.stringify(str)} is ${len} wide and does not fit ${w} at (${x},${y})`);
+      return;
+    }
+    this.text(x + Math.floor((w - len) / 2), y, str);
+  }
+
+  /** Right-align `str` so its last glyph lands on column `xEnd`. */
+  right(xEnd, y, str) {
+    this.text(xEnd - [...str].length + 1, y, str);
+  }
+
+  /**
    * Rectangle with `+` corners. `h`, `v` and `corner` let a caller draw a modal
    * (`h: '='`) without reaching for non-ASCII.
    */
@@ -190,7 +208,9 @@ export class Canvas {
  *            danglingCorners: object[], inconsistentRows: object[]}}
  */
 export function verify(text) {
-  const lines = text.replace(/\n$/, '').split('\n');
+  // Pasted diagrams arrive with CRLF on Windows; a stray '\r' is a line ending,
+  // not a glyph, so normalise before anything measures columns.
+  const lines = text.replace(/\r\n?/g, '\n').replace(/\n$/, '').split('\n');
   const at = (x, y) => (y >= 0 && y < lines.length && x >= 0 && x < lines[y].length ? lines[y][x] : undefined);
 
   const nonAscii = [];
